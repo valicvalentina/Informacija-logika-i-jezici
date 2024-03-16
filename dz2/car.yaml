@@ -1,0 +1,102 @@
+---
+openapi: 3.0.0
+info:
+  title: home-iot-api
+  description: The API for the EatBacon IOT project
+  version: 3.0.0
+servers:
+- url: https://virtserver.swaggerhub.com/VALENTINAVALIC13/car/1.0.0
+  description: SwaggerHub API Auto Mocking
+paths:
+  /add:
+    post:
+      summary: Adds a new car
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Cars'
+            example:
+              id: 10
+              manufacturer: Mercedes
+              model: slc 500
+              serialNumber: 50
+      responses:
+        "200":
+          description: OK
+  /modify:
+    put:
+      summary: Modify a car
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Cars'
+            example:
+              id: 10
+              manufacturer: Mercedes
+              model: slc 500
+              serialNumber: 50
+      responses:
+        "200":
+          description: OK
+  /car/{id}:
+    get:
+      tags:
+      - Users
+      summary: Gets a car by ID.
+      operationId: getCarById
+      parameters:
+      - name: id
+        in: path
+        description: Car ID
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cars'
+  /remove/{id}:
+    delete:
+      tags:
+      - Users
+      summary: Removes a car by ID.
+      operationId: removeCarById
+      parameters:
+      - name: id
+        in: path
+        description: Car ID
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cars'
+components:
+  schemas:
+    Cars:
+      type: object
+      properties:
+        id:
+          type: integer
+        manufacturer:
+          type: string
+        model:
+          type: string
+        SerialNumber:
+          type: integer
+      description: ok
